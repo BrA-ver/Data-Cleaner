@@ -14,4 +14,9 @@ public class PlayerInput : MonoBehaviour
     {
         return Input.GetMouseButtonDown(0);
     }
+
+    public bool JumpInput()
+    {
+        return Input.GetButtonDown("Jump");
+    }
 }

@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] Animator anim;
 
+    [SerializeField] GroundDetector ground;
+    float yVelocity;
+
+    [SerializeField] float jumpHeight = 2.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,8 @@ public class Player : MonoBehaviour
         Vector2 direction = input.GetMoveInput();
         SetCamRelativeMovement(direction);
         velocity = cameraRelativeDirection * speed;
+        Gravity();
+        velocity.y = yVelocity;
         MoveController();
 
         RotatePlayer(new Vector2(cameraRelativeDirection.x, cameraRelativeDirection.z));
@@ -75,11 +82,26 @@ public class Player : MonoBehaviour
 
     void PlayAnim()
     {
-        anim.SetBool("moving", velocity != Vector3.zero);
+        anim.SetBool("moving", cameraRelativeDirection != Vector3.zero);
     }
 
     void PlatAttack()
     {
         anim.SetTrigger("attack");
+    }
+
+    void Gravity()
+    {
+        print(ground.GroundCheck());
+        if (ground.GroundCheck())
+        {
+            yVelocity = -0.5f;
+
+            if (input.JumpInput())
+            {
+                yVelocity = Mathf.Sqrt(-2f * jumpHeight * Physics.gravity.y);
+            }
+        }
+        yVelocity += Physics.gravity.y * 2 * Time.deltaTime;
     }
 }
