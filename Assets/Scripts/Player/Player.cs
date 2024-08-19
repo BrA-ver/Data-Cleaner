@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Ground Movement
     CharacterController controller;
-    PlayerInput input;
+    UserInput input;
     [SerializeField] float speed = 10f;
     private Vector3 velocity;
 
+    // Rotation and movement correction
     Vector3 cameraRelativeDirection;
 
     [SerializeField] float rotationSpeed = 2.5f;
 
+    // Animation
     [SerializeField] Animator anim;
 
+    // Vertical movement
     [SerializeField] GroundDetector ground;
     float yVelocity;
 
@@ -22,7 +26,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        input = GetComponent<PlayerInput>();
+        input = GetComponent<UserInput>();
     }
 
     // Update is called once per frame
@@ -33,14 +37,24 @@ public class Player : MonoBehaviour
             PlatAttack();
         }
 
+        // Get player's movement input from the input class
         Vector2 direction = input.GetMoveInput();
         SetCamRelativeMovement(direction);
+
+        // Make the character's velocity
         velocity = cameraRelativeDirection * speed;
         Gravity();
+
+        // Apply vertical velocity
         velocity.y = yVelocity;
+
+        // Move character controller
         MoveController();
 
+        // Rotate player to the movement direction
         RotatePlayer(new Vector2(cameraRelativeDirection.x, cameraRelativeDirection.z));
+
+        // Animate player
         PlayAnim();
     }
 
@@ -72,6 +86,7 @@ public class Player : MonoBehaviour
     {
         Vector3 directionToLook = new Vector3(direction.x, 0.0f, direction.y);
 
+        // Turn the player if the direction to look is not zero
         if (directionToLook.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToLook);

@@ -10,6 +10,7 @@ public class GroundDetector : MonoBehaviour
     
     public bool GroundCheck()
     {
+        // Check for overlap with the ground layer
         bool onGround = Physics.CheckSphere(transform.position, detectRadius, groundLayer);
         return onGround;
     }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] PlayerInput input;
+    // Shooter class using object pool
+
+    [SerializeField] UserInput input;
     [SerializeField] Bullet bullet;
     [SerializeField] float shootForce = 10f;
 
@@ -19,9 +21,11 @@ public class Shooter : MonoBehaviour
     {
         if (input.AttackInput())
         {
-            Bullet newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            GameObject newBullet = ObjectPool.instance.SpawnFromPool("Bullet", transform.position, Quaternion.identity);
 
-            newBullet.FireBullet(transform.forward, shootForce);
+            // Launch the bullet's rigidbody after spawning it
+            newBullet.GetComponent<Bullet>().FireBullet(transform.forward, shootForce);
+
         }
     }
 }

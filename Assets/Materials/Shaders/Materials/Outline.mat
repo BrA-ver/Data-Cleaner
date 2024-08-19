@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Outline
+  m_Name: Outline
   m_Shader: {fileID: -6465566751694194690, guid: c3780cc697a7b1f4a9241e41072bd314,
     type: 3}
   m_Parent: {fileID: 0}
