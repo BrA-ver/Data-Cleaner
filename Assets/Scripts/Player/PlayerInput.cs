@@ -9,4 +9,9 @@ public class PlayerInput : MonoBehaviour
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         return moveInput.normalized;
     }
+
+    public bool AttackInput()
+    {
+        return Input.GetMouseButtonDown(0);
+    }
 }

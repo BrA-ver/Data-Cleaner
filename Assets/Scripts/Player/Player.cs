@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (input.AttackInput())
+        {
+            PlatAttack();
+        }
+
         Vector2 direction = input.GetMoveInput();
         SetCamRelativeMovement(direction);
         Vector3 velocity = cameraRelativeDirection * speed;
@@ -70,5 +75,10 @@ public class Player : MonoBehaviour
     void PlayAnim()
     {
         anim.SetBool("moving", cameraRelativeDirection != Vector3.zero);
+    }
+
+    void PlatAttack()
+    {
+        anim.SetTrigger("attack");
     }
 }
