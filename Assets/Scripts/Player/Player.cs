@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
     CharacterController controller;
     PlayerInput input;
     [SerializeField] float speed = 10f;
+    private Vector3 velocity;
 
     Vector3 cameraRelativeDirection;
 
@@ -29,14 +30,14 @@ public class Player : MonoBehaviour
 
         Vector2 direction = input.GetMoveInput();
         SetCamRelativeMovement(direction);
-        Vector3 velocity = cameraRelativeDirection * speed;
-        MoveController(velocity);
+        velocity = cameraRelativeDirection * speed;
+        MoveController();
 
         RotatePlayer(new Vector2(cameraRelativeDirection.x, cameraRelativeDirection.z));
         PlayAnim();
     }
 
-    void MoveController(Vector3 velocity)
+    void MoveController()
     {
         controller.Move(velocity * Time.deltaTime);
     }
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
 
     void PlayAnim()
     {
-        anim.SetBool("moving", cameraRelativeDirection != Vector3.zero);
+        anim.SetBool("moving", velocity != Vector3.zero);
     }
 
     void PlatAttack()
