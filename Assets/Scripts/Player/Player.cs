@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] float rotationSpeed = 2.5f;
 
+    [SerializeField] Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
         MoveController(velocity);
 
         RotatePlayer(new Vector2(cameraRelativeDirection.x, cameraRelativeDirection.z));
+        PlayAnim();
     }
 
     void MoveController(Vector3 velocity)
@@ -63,5 +65,10 @@ public class Player : MonoBehaviour
             Quaternion currentRotation = transform.rotation;
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    void PlayAnim()
+    {
+        anim.SetBool("moving", cameraRelativeDirection != Vector3.zero);
     }
 }
