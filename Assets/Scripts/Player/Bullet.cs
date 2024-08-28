@@ -20,4 +20,9 @@ public class Bullet : MonoBehaviour
         body.isKinematic = false;
         body.AddForce(direction * force, ForceMode.Impulse);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        gameObject.SetActive(false);
+    }
 }

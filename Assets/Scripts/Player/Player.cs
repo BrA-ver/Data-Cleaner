@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     // Ground Movement
     CharacterController controller;
     UserInput input;
@@ -22,11 +24,17 @@ public class Player : MonoBehaviour
 
     [SerializeField] float jumpHeight = 2.5f;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         input = GetComponent<UserInput>();
+        SpawnManager.instance.SetCheckpoint(transform.position);
     }
 
     // Update is called once per frame
@@ -98,6 +106,8 @@ public class Player : MonoBehaviour
     void PlayAnim()
     {
         anim.SetBool("moving", cameraRelativeDirection != Vector3.zero);
+        anim.SetBool("grounded", ground.GroundCheck());
+        anim.SetFloat("yVelocity", Mathf.Sign( yVelocity));
     }
 
     void PlatAttack()
