@@ -105,6 +105,20 @@
                 },
                 "m_SlotId": 0
             }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "d011b48ec8364eb1a1c46fc2cefdfdf7"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "c9e3537fd8504420837108d995725f1d"
+                },
+                "m_SlotId": 0
+            }
         }
     ],
     "m_VertexContext": {

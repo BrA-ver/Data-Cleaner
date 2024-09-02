@@ -5,14 +5,22 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody body;
+    [SerializeField] float lifeTime = 20f;
+    float lifeTimeCounter;
+
     // Start is called before the first frame update
+    private void Start()
+    {
+        lifeTimeCounter = lifeTime;
+    }
 
-    
-
-    // Update is called once per frame
     void Update()
     {
-        
+        lifeTimeCounter -= Time.deltaTime;
+        if (lifeTimeCounter <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void FireBullet(Vector3 direction, float force)
