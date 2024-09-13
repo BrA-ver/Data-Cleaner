@@ -5,64 +5,46 @@ using System;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    NavMeshAgent agent;
-    private float attackDistance;
+    protected NavMeshAgent agent;
+    protected Animator anim;
+    protected bool moving = false;
 
-    [SerializeField] Transform target;
-    public float pathUpdateDelay = 0.2f;
-    float pathUpdateDeadline;
+    [SerializeField] protected float attackDistance;
+    protected bool attacking = false;
+    [SerializeField] protected Transform target;
 
-    Animator anim;
-    bool attacking;
-
-    private void Start()
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        attackDistance = agent.stoppingDistance;
+
+        agent.stoppingDistance = attackDistance;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        print("Stopped: " + agent.isStopped);
-        if (target != null)
-        {
-            bool inRange = Vector3.Distance(transform.position, target.position) <= attackDistance;
-
-            if (inRange)
-            {
-                anim.SetBool("isIdle", true);
-                LookAtTarget();
-                Attack();
-            }
-            else
-            {
-                UpdatePath();
-                anim.SetBool("isIdle", false);
-            }
-        }
-
-        
+        Movement();
+        UpdateAnim();
     }
 
-    private void Attack()
+    protected virtual void Movement()
+    {
+
+    }
+
+    protected virtual void Attack()
     {
         if (attacking) { return; }
         attacking = true;
         anim.SetTrigger("attack");
     }
 
-    private void UpdatePath()
+    public void FinishAttack()
     {
-        if (Time.time >= pathUpdateDeadline)
-        {
-            Debug.Log("Updating Path");
-            pathUpdateDeadline = Time.time + pathUpdateDelay;
-            agent.SetDestination(target.position);
-        }
+        attacking = false;
     }
 
-    private void LookAtTarget()
+    protected virtual void LookAtTarget()
     {
         Vector3 lookPos = target.position - transform.position;
         lookPos.y = 0;
@@ -70,8 +52,14 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.2f);
     }
 
-    public void FinishAttack()
+    protected virtual void UpdateAnim()
     {
-        attacking = false;
+        anim.SetBool("moving", moving);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
+    }
+
 }

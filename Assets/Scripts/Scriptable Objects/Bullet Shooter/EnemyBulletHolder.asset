@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe076af42534614385a0f57a5f320df, type: 3}
+  m_Name: EnemyBulletHolder
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4208805648861770568, guid: f175a717233cdce4aa6ed2aec2d74796, type: 3}
+  num: 0
+  maxNum: 200
+  shootForce: 15

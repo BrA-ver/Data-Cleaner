@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+
+    [SerializeField] protected BulletHolder bulletHolder;
     // Shooter class using object pool
-
-    [SerializeField] UserInput input;
-    [SerializeField] Bullet bullet;
-    [SerializeField] float shootForce = 10f;
-
-    [SerializeField] int bullets = 15;
 
     // Start is called before the first frame update
     void Start()
     {
-        UIManager.insance.SetBulletSlider(bullets, bullets);
+        UIManager.insance.SetBulletSlider(bulletHolder.maxNum, bulletHolder.maxNum);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input.AttackInput())
-        {
-            if (bullets <= 0) { return; }
-            GameObject newBullet = ObjectPool.instance.SpawnFromPool("Bullet", transform.position, Quaternion.identity);
 
-            // Launch the bullet's rigidbody after spawning it
-            newBullet.GetComponent<Bullet>().FireBullet(transform.forward, shootForce);
-            bullets--;
-            UIManager.insance.UpdateBulletSlider(bullets);
+    }
+
+    protected virtual void ShootBullet(string key)
+    {
+        if (bulletHolder.num <= 0) {
+            bulletHolder.Reload();
         }
+        GameObject newBullet = ObjectPool.instance.SpawnFromPool(key, transform.position, Quaternion.identity);
+
+        // Launch the bullet's rigidbody after spawning it
+        newBullet.GetComponent<Bullet>().FireBullet(transform.forward, bulletHolder.shootForce);
+        bulletHolder.num--;
     }
 }
