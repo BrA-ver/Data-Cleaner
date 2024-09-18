@@ -13,6 +13,7 @@ public class Attack : MonoBehaviour
 
     public void FinishAttack()
     {
+        Debug.Log("Finish");
         Attacker.FinishAttack();
     }
 }

@@ -11,8 +11,10 @@ public class UIManager : MonoBehaviour
     Color fadeColor = Color.black;
     bool fade;
     bool clear;
-    [SerializeField] float fadeTime = 2f;
+    [SerializeField] public float fadeTime = 2f;
     float fadeCounter;
+
+    PlayerHealth playerHealth;
 
     private void Awake()
     {
@@ -30,11 +32,18 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         FadeToClear();
+
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
+        if (playerHealth)
+        {
+            playerHealth.onHealthChanged.AddListener(UpdateHealthSlider);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (fade)
         {
             fadeScreen.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, fadeScreen.color.a + (fadeTime * Time.deltaTime));
@@ -70,9 +79,10 @@ public class UIManager : MonoBehaviour
         healthSlider.value = value;
     }
 
-    public void UpdateHealthSlider(float value)
+    private void UpdateHealthSlider(float value)
     {
         healthSlider.value = value;
+        Debug.Log("Health " + value);
     }
 
     public void FadeToBlack()

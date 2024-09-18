@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
+    public HitboxType hitbox;
+
+    public enum TargetType { Player, Enemy}
+    public TargetType targetType;
+
     public float damage = 2f;
     public bool instaKill = false;
 
@@ -18,4 +23,11 @@ public class Hazard : MonoBehaviour
     {
         
     }
+}
+
+[System.Serializable]
+public class HitboxType
+{
+    public enum BoxType { Player, Enemy}
+    public BoxType type;
 }

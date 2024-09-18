@@ -5,22 +5,26 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody body;
-    [SerializeField] float lifeTime = 20f;
-    float lifeTimeCounter;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        lifeTimeCounter = lifeTime;
-    }
+    [SerializeField] float lifeTime = 10f;
+    float lifeTimeCounter = 0f;
+    [SerializeField] GameObject exp;
 
     void Update()
     {
-        lifeTimeCounter -= Time.deltaTime;
-        if (lifeTimeCounter <= 0f)
+        lifeTimeCounter += Time.deltaTime;
+        if (lifeTimeCounter >= lifeTime)
         {
-            Destroy(gameObject);
+            ResetBullet();
         }
+    }
+
+    private void ResetBullet()
+    {
+        body.velocity = Vector3.zero;
+        body.isKinematic = true;
+        gameObject.SetActive(false);
+        lifeTimeCounter = 0f;
+
     }
 
     public void FireBullet(Vector3 direction, float force)
@@ -29,8 +33,11 @@ public class Bullet : MonoBehaviour
         body.AddForce(direction * force, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+
+    private void OnTriggerEnter(Collider other)
     {
-        gameObject.SetActive(false);
+        Instantiate(exp, transform.position, Quaternion.identity);
+        ResetBullet();
     }
 }

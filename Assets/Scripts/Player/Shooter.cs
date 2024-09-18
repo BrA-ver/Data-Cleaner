@@ -22,6 +22,12 @@ public class Shooter : MonoBehaviour
 
     protected virtual void ShootBullet(string key)
     {
+        if (!ObjectPool.instance)
+        {
+            Debug.Log("No Object Pool On " + transform.name);
+            return;
+        }
+
         if (bulletHolder.num <= 0) {
             bulletHolder.Reload();
         }

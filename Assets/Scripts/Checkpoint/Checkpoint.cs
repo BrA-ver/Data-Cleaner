@@ -18,6 +18,7 @@ public class Checkpoint : MonoBehaviour
 
     void SetCheckpoint()
     {
+        // Set the player's respawn position
         SpawnManager.instance.SetCheckpoint(transform.position);
     }
 

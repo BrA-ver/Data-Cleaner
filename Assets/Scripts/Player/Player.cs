@@ -34,12 +34,19 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         input = GetComponent<UserInput>();
-        SpawnManager.instance.SetCheckpoint(transform.position);
+        if (SpawnManager.instance)
+        {
+            SpawnManager.instance.SetCheckpoint(transform.position);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (input.CloseGame())
+        {
+            GameManager.instance.QuitGame();
+        }
         if (input.AttackInput())
         {
             PlatAttack();

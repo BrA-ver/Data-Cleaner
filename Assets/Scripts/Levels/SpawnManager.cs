@@ -1,29 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager instance;
+    public UnityEvent <Vector3> onSetSpawn;
+    public UnityEvent<float> onPlayerDisable;
+    public UnityEvent onPlayerEnable;
+
+    PlayerHealth playerHealth;
 
     private void Awake()
     {
         instance = this;
     }
 
+    private void Start()
+    {
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
+        if (playerHealth)
+        {
+            playerHealth.onDied.AddListener(RespawnPlayer);
+        }
+    }
+
     Vector3 checkpoint;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
@@ -37,11 +40,9 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator Respawn()
     {
-        Player.instance.gameObject.SetActive(false);
-        UIManager.insance.FadeToBlack();
         yield return new WaitForSeconds(2f);
         Player.instance.transform.position = checkpoint;
-        UIManager.insance.FadeToClear();
+        
         Player.instance.gameObject.SetActive(true);
         Player.instance.GetComponent<Health>().ResetHealth();
     }

@@ -22,4 +22,9 @@ public class UserInput : MonoBehaviour
     {
         return playerInput.actions["Jump"].WasPerformedThisFrame();
     }
+
+    public bool CloseGame()
+    {
+        return playerInput.actions["Close"].WasPerformedThisFrame();
+    }
 }

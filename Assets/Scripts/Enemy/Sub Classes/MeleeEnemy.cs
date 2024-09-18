@@ -6,7 +6,7 @@ public class MeleeEnemy : Enemy
     public float pathUpdateDelay = 0.2f;
     float pathUpdateDeadline;
 
-    protected override void Movement()
+    public override void Movement()
     {
         base.Movement();
         UpdatePath();
@@ -14,13 +14,6 @@ public class MeleeEnemy : Enemy
 
     private void UpdatePath()
     {
-        bool inRange = Vector3.Distance(transform.position, target.position) <= attackDistance;
-        if (inRange) 
-        {
-            moving = false;
-            Attack();
-            return; 
-        }
         if (Time.time >= pathUpdateDeadline)
         {
             moving = true;
