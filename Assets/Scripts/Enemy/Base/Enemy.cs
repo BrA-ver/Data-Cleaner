@@ -6,10 +6,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent { get; private set; }
     public Animator Anim { get; protected set; }
-
     public EnemyStateMachine StateMachine { get; private set; }
+    public PlayerDetector PlayerDetector { get; private set; }
 
 
     protected virtual void Awake()
@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         StateMachine = new EnemyStateMachine();
         Anim = GetComponentInChildren<Animator>();
+        PlayerDetector = GetComponentInChildren<PlayerDetector>();
     }
 
     // Update is called once per frame

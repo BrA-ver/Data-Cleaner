@@ -7,12 +7,14 @@ public class PatrolEnemy : Enemy
 {
     public PatrolIdleState IdleState { get; private set; }
     public PatrolMoveState MoveState { get; private set; }
+    public PatrolChaseState ChaseState { get; private set; }
+    public PatrolAttackState AttackState { get; private set; }
 
     [SerializeField] Transform patrolRoute;
     List<Transform> points = new List<Transform>();
     public int currentPoint;
 
-    [SerializeField] public float waitTime { get; private set; } = 2.5f;
+    [SerializeField] public float waitTime { get; private set; } = .5f;
 
     protected override void Awake()
     {
@@ -21,6 +23,8 @@ public class PatrolEnemy : Enemy
 
         IdleState = new PatrolIdleState(this, StateMachine, "idle");
         MoveState = new PatrolMoveState(this, StateMachine, "move");
+        ChaseState = new PatrolChaseState(this, StateMachine, "move");
+        AttackState = new PatrolAttackState(this, StateMachine, "idle");
     }
 
     private void Start()

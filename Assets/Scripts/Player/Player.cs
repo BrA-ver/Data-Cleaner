@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
 
     void Gravity()
     {
-        print(ground.GroundCheck());
+        //print(ground.GroundCheck());
         if (ground.GroundCheck())
         {
             yVelocity = -0.5f;

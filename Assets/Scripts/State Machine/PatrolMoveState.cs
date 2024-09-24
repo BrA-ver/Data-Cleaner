@@ -35,5 +35,10 @@ public class PatrolMoveState : EnemyState
             enemy.IncrementPoint();
             stateMachine.SwitchState(enemy.IdleState);
         }
+
+        if (enemy.PlayerDetector.detected)
+        {
+            stateMachine.SwitchState(enemy.ChaseState);
+        }
     }
 }

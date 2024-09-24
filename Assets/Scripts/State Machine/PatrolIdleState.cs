@@ -36,5 +36,10 @@ public class PatrolIdleState : EnemyState
             waitCounter = 0f;
             stateMachine.SwitchState(enemy.MoveState);
         }
+
+        if (enemy.PlayerDetector.detected)
+        {
+            stateMachine.SwitchState(enemy.ChaseState);
+        }
     }
 }
