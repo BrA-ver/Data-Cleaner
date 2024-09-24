@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public static SpawnManager instance;
     public UnityEvent <Vector3> onSetSpawn;
     public UnityEvent<float> onPlayerDisable;
-    public UnityEvent onPlayerEnable;
+    public UnityEvent onPlayerRespawn = new UnityEvent();
 
     PlayerHealth playerHealth;
 
@@ -45,5 +45,6 @@ public class SpawnManager : MonoBehaviour
         
         Player.instance.gameObject.SetActive(true);
         Player.instance.GetComponent<Health>().ResetHealth();
+        onPlayerRespawn?.Invoke();
     }
 }

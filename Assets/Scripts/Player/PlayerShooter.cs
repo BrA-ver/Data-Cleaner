@@ -4,20 +4,8 @@ using UnityEngine;
 
 public class PlayerShooter : Shooter
 {
-    [SerializeField] UserInput input;
-
-    // Start is called before the first frame update
-    void Start()
+    public void Attack()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (input.AttackInput())
-        {
-            ShootBullet("Player Bullet");
-        }
+        ShootBullet("Player Bullet");
     }
 }

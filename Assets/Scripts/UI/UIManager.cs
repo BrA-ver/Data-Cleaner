@@ -4,15 +4,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager insance;
+    FadeScreen fadeScreen;
 
     [SerializeField] Slider bulletSlider, healthSlider;
-    [SerializeField] Image fadeScreen;
 
-    Color fadeColor = Color.black;
-    bool fade;
-    bool clear;
-    [SerializeField] public float fadeTime = 2f;
-    float fadeCounter;
 
     PlayerHealth playerHealth;
 
@@ -31,7 +26,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FadeToClear();
+        fadeScreen = GetComponentInChildren<FadeScreen>();
+        fadeScreen?.FadeToClear();
 
         playerHealth = FindAnyObjectByType<PlayerHealth>();
         if (playerHealth)
@@ -40,27 +36,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (fade)
-        {
-            fadeScreen.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, fadeScreen.color.a + (fadeTime * Time.deltaTime));
-            if (fadeScreen.color.a >= 1)
-            {
-                fade = false;
-            }
-        }
-        else if (clear)
-        {
-            fadeScreen.color = new Color(fadeColor.r, fadeColor.g, fadeColor.b, fadeScreen.color.a - (fadeTime * Time.deltaTime));
-            if (fadeScreen.color.a <= 0f)
-            {
-                clear = false;
-            }
-        }
-    }
 
     public void SetBulletSlider(int value, int max)
     {
@@ -85,14 +60,5 @@ public class UIManager : MonoBehaviour
         Debug.Log("Health " + value);
     }
 
-    public void FadeToBlack()
-    {
-        fade = true;
-        fadeCounter = fadeTime;
-    }
-
-    public void FadeToClear()
-    {
-        clear = true;
-    }
+    
 }

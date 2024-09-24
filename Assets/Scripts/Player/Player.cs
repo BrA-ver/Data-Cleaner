@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] float jumpHeight = 2.5f;
 
+    PlayerAttack attack;
+
     private void Awake()
     {
         instance = this;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         input = GetComponent<UserInput>();
+        attack = GetComponent<PlayerAttack>();
         if (SpawnManager.instance)
         {
             SpawnManager.instance.SetCheckpoint(transform.position);
@@ -47,9 +50,11 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.QuitGame();
         }
-        if (input.AttackInput())
+
+        if (attack.Attacking)
         {
-            PlatAttack();
+            controller.Move(Vector2.zero);
+            return;
         }
 
         // Get player's movement input from the input class
@@ -115,11 +120,6 @@ public class Player : MonoBehaviour
         anim.SetBool("moving", cameraRelativeDirection != Vector3.zero);
         anim.SetBool("grounded", ground.GroundCheck());
         anim.SetFloat("yVelocity", Mathf.Sign( yVelocity));
-    }
-
-    void PlatAttack()
-    {
-        anim.SetTrigger("attack");
     }
 
     void Gravity()

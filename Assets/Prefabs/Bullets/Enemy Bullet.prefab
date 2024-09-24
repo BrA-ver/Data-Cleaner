@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 769127467453731778}
   - component: {fileID: 2334949465715265672}
   - component: {fileID: 7592421878007263442}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 952697441551807490}
   - component: {fileID: 7604143235146916464}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 2430514470666899716}
   - component: {fileID: 6806206653438294938}
   - component: {fileID: 16488263447717582}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 4208805648861770568}
   - component: {fileID: 5327332752984361185}
   - component: {fileID: 8103301479984420249}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ MonoBehaviour:
   hitbox:
     type: 0
   targetType: 0
-  damage: 2
+  damage: 1
   instaKill: 0
 --- !u!135 &8103301479984420249
 SphereCollider:

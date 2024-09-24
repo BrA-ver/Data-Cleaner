@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2168301831002493126}
   - component: {fileID: 7897465779145760266}
-  - component: {fileID: 3720792007962096524}
-  - component: {fileID: 8278686370409535701}
+  - component: {fileID: 1980492911088311645}
+  - component: {fileID: 379853698167597047}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 9136479286258093}
   - {fileID: 8300959745161906134}
+  - {fileID: 6013868917923931682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &7897465779145760266
@@ -58,7 +59,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3720792007962096524
+--- !u!114 &1980492911088311645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,15 +68,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6060002889120198247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcede130b558ad846b17f5691786c6c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 438e17f3ad49d574abd5ea06ddb99e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 5359565178255068397}
-  attackDistance: 2
-  target: {fileID: 0}
-  attackCooldown: 1.5
-  pathUpdateDelay: 0.2
---- !u!114 &8278686370409535701
+  patrolRoute: {fileID: 6013868917923931682}
+  currentPoint: 0
+--- !u!114 &379853698167597047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,10 +82,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 6060002889120198247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c3d59737691704086b97906f2e403e, type: 3}
+  m_Script: {fileID: 11500000, guid: bb724f8b1553553478749ca6420b1bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3720792007962096524}
+  maxhealth: 10
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDied:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &8795318102226081906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6013868917923931682}
+  m_Layer: 0
+  m_Name: Patrol Route
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6013868917923931682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795318102226081906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2168301831002493126}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &552479206024908358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,6 +374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4650250206750034050, guid: 16bcf8ad77b86204792cc0e65ea8a45e,
         type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 379853698167597047}
+    - target: {fileID: 4650250206750034050, guid: 16bcf8ad77b86204792cc0e65ea8a45e,
+        type: 3}
       propertyPath: hitbox.type
       value: 1
       objectReference: {fileID: 0}
@@ -346,6 +386,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786961147250075986, guid: 16bcf8ad77b86204792cc0e65ea8a45e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786961147250075986, guid: 16bcf8ad77b86204792cc0e65ea8a45e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

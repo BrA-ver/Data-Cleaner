@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+namespace Testing
 {
-    public Enemy Attacker { get; private set; }
-
-    private void Start()
+    public class Attack : MonoBehaviour
     {
-        Attacker = GetComponentInParent<Enemy>();
-    }
+        public Enemy Attacker { get; private set; }
 
-    public void FinishAttack()
-    {
-        Debug.Log("Finish");
-        Attacker.FinishAttack();
+        private void Start()
+        {
+            Attacker = GetComponentInParent<Enemy>();
+        }
+
+        public void FinishAttack()
+        {
+            Debug.Log("Finish");
+            Attacker.FinishAttack();
+        }
     }
 }

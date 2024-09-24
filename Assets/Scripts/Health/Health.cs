@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxhealth;
         if (GameEvents.instance)
         {
             GameEvents.instance.UpdateHealthBar(currentHealth, maxhealth);

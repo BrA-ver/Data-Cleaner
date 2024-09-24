@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class LevelEnd : MonoBehaviour
 {
     public string nextLevel;
+    public UnityEvent onLevelComplete = new UnityEvent();
 
 
     private void OnTriggerEnter(Collider other)
@@ -28,10 +29,9 @@ public class LevelEnd : MonoBehaviour
             SceneManager.LoadScene(nextLevel);
             yield break;
         }
-        
-        // If we do have a UI manager fade the screen to black and switch to the next level
-        UIManager.insance.FadeToBlack();
-        yield return new WaitForSeconds(UIManager.insance.fadeTime);
+
+        onLevelComplete?.Invoke();
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(nextLevel);
     }
 }

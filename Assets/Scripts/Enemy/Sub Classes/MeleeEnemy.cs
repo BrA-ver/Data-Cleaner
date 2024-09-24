@@ -1,25 +1,28 @@
 using UnityEngine.AI;
 using UnityEngine;
 
-public class MeleeEnemy : Enemy
+namespace Testing
 {
-    public float pathUpdateDelay = 0.2f;
-    float pathUpdateDeadline;
-
-    public override void Movement()
+    public class MeleeEnemy : Enemy
     {
-        base.Movement();
-        UpdatePath();
-    }
+        public float pathUpdateDelay = 0.2f;
+        float pathUpdateDeadline;
 
-    private void UpdatePath()
-    {
-        if (Time.time >= pathUpdateDeadline)
+        public override void Movement()
         {
-            moving = true;
-            Debug.Log("Updating Path");
-            pathUpdateDeadline = Time.time + pathUpdateDelay;
-            agent.SetDestination(target.position);
+            base.Movement();
+            UpdatePath();
+        }
+
+        private void UpdatePath()
+        {
+            if (Time.time >= pathUpdateDeadline)
+            {
+                
+                Debug.Log("Updating Path");
+                pathUpdateDeadline = Time.time + pathUpdateDelay;
+                agent.SetDestination(target.position);
+            }
         }
     }
 }
