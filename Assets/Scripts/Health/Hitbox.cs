@@ -13,11 +13,11 @@ public class Hitbox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        print("hit");
+        //print("hit");
         Hazard hazard = other.GetComponent<Hazard>();
         if (!hazard)
         {
-            Debug.Log("No Hazard");
+            //Debug.Log("No Hazard");
             return;
         }
 

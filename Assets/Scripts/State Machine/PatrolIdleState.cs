@@ -18,7 +18,7 @@ public class PatrolIdleState : EnemyState
 
     public override void Enter()
     {
-        Debug.Log("Enter Idle State");
+        //Debug.Log("Enter Idle State");
         enemy.Anim.SetBool(animBoolName, true);
     }
 
@@ -29,7 +29,7 @@ public class PatrolIdleState : EnemyState
 
     public override void Tick(float deltaTime)
     {
-        Debug.Log("Idle Tick");
+        //Debug.Log("Idle Tick");
         waitCounter += deltaTime;
         if (waitCounter >= enemy.waitTime)
         {

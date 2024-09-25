@@ -11,7 +11,7 @@ public class Shooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UIManager.insance.SetBulletSlider(bulletHolder.maxNum, bulletHolder.maxNum);
+        //UIManager.insance.SetBulletSlider(bulletHolder.maxNum, bulletHolder.maxNum);
     }
 
     // Update is called once per frame

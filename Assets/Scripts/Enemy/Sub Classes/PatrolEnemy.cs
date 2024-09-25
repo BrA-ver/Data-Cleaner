@@ -39,7 +39,7 @@ public class PatrolEnemy : Enemy
         {
             points.Add(point);
         }
-        Debug.Log("Points " + points.Count);
+        //Debug.Log("Points " + points.Count);
     }
 
     public void IncrementPoint()
