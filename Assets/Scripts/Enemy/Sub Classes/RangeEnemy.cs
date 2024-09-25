@@ -2,52 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Testing
+public class RangeEnemy : Enemy
 {
-    public class RangeEnemy : Enemy
+    public EnemyShooter Shooter { get; private set; }
+
+    public float pathUpdateDelay = 0.2f;
+    float pathUpdateDeadline;
+    bool canShoot = true;
+
+    public float attackDistance = 5f;
+
+    public RangeIdleState IdleState { get; private set; }
+    public RangeAttackState AttackState { get; private set; }
+
+    protected override void Awake()
     {
-        public float pathUpdateDelay = 0.2f;
-        float pathUpdateDeadline;
-        bool canShoot = true;
+        base.Awake();
+        Shooter = GetComponentInChildren<EnemyShooter>();
 
-        EnemyShooter shooter;
+        IdleState = new RangeIdleState(this, StateMachine, "idle");
+        AttackState = new RangeAttackState(this, StateMachine, "move");
+    }
 
-        protected override void Start()
+    private void Start()
+    {
+        StateMachine.SwitchState(IdleState);
+        agent.stoppingDistance = attackDistance;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
+    }
+
+    public override void Attack()
+    {
+        base.Attack();
+        if (canAttack)
         {
-            base.Start();
-            shooter = GetComponentInChildren<EnemyShooter>();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-        }
-
-        public override void Movement()
-        {
-            base.Movement();
-            UpdatePath();
-        }
-
-        public override void Attack()
-        {
-            if (attacking || attackCounter < attackCooldown) { return; }
-            attacking = true;
-            attackCounter = 0f;
-            
-            shooter.Attack();
-        }
-
-        private void UpdatePath()
-        {
-            if (Time.time >= pathUpdateDeadline)
-            {
-               
-                Debug.Log("Updating Path");
-                pathUpdateDeadline = Time.time + pathUpdateDelay;
-                agent.SetDestination(target.position);
-            }
+            Shooter.Attack();
         }
     }
+
 }

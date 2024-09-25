@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     public EnemyStateMachine StateMachine { get; private set; }
     public PlayerDetector PlayerDetector { get; private set; }
 
+    public float attackCooldown = 2f;
+    protected float attackCounter;
+    protected bool canAttack;
+
 
     protected virtual void Awake()
     {
@@ -21,9 +25,15 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         StateMachine.currentState?.Tick(Time.deltaTime);
+        if (attackCounter > 0f)
+        {
+            attackCounter -= Time.deltaTime;
+        }
+
+        canAttack = attackCounter <= 0f;
     }
 
     public void SetDestination(Vector3 newDestination)
@@ -34,5 +44,12 @@ public class Enemy : MonoBehaviour
     public bool ReachedPoint()
     {
         return Vector3.Distance(transform.position, agent.destination) <= agent.stoppingDistance;
+    }
+
+    public virtual void Attack()
+    {
+        if (!canAttack) { return; }
+        attackCounter = attackCooldown;
+        Anim.SetTrigger("attack");
     }
 }
