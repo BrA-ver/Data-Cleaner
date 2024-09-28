@@ -733,7 +733,7 @@ PrefabInstance:
     - target: {fileID: 4420413983452714843, guid: b973d7b4f9c93904ca7ac4b022646eba,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5660819226586815552, guid: b973d7b4f9c93904ca7ac4b022646eba,
         type: 3}
@@ -3809,7 +3809,19 @@ MonoBehaviour:
   nextLevel: Enemy
   onLevelComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969641025}
+        m_TargetAssemblyTypeName: FadeScreen, Assembly-CSharp
+        m_MethodName: FadeToBlack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!43 &846306701
 Mesh:
   m_ObjectHideFlags: 0
@@ -5610,6 +5622,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1821537572}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1969641025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7366309524170837669, guid: b973d7b4f9c93904ca7ac4b022646eba,
+    type: 3}
+  m_PrefabInstance: {fileID: 225762989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a0070676dd7d24aa1b373d6a4697c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2013410473
 GameObject:
   m_ObjectHideFlags: 1

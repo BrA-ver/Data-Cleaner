@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 1980492911088311645}
   - component: {fileID: 379853698167597047}
   m_Layer: 0
-  m_Name: MeleeEnemy
+  m_Name: PatrolEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
