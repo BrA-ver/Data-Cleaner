@@ -52,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
         // Turn the player if the direction to look is not zero
         if (direction.magnitude > 0.1f)
         {
+            direction.y = 0f;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             Quaternion currentRotation = transform.rotation;
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
