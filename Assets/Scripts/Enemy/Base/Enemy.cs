@@ -52,4 +52,12 @@ public class Enemy : MonoBehaviour
         attackCounter = attackCooldown;
         Anim.SetTrigger("attack");
     }
+
+    public void LookAtTarget(Vector3 targetPos)
+    {
+        Vector3 dir = targetPos - transform.position;
+        dir.y = 0f;
+        Quaternion rotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.2f);
+    }
 }

@@ -31,6 +31,7 @@ public class RangeAttackState : RangeEnemyState
             bool inRange = Vector3.Distance(enemy.transform.position, enemy.PlayerDetector.GetPlayerPosition()) <= enemy.agent.stoppingDistance;
             if (inRange)
             {
+                enemy.LookAtTarget(Player.instance.transform.position);
                 enemy.Attack();
                 enemy.Anim.SetBool("idle", true);
                 enemy.Anim.SetBool("move", false);
