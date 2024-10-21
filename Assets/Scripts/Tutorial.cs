@@ -20,6 +20,7 @@ public class Tutorial : MonoBehaviour
 
         textBox.ActivateBox();
         textBox.SetText(tutorialMessage);
+        AudioManager.Instance.PlaySFX("Pop Up");
     }
 
     private void OnTriggerExit(Collider other)
@@ -27,5 +28,6 @@ public class Tutorial : MonoBehaviour
         if (!textBox) { return; }
 
         textBox.DeactivateBox();
+        AudioManager.Instance.PlaySFX("Pop Down");
     }
 }

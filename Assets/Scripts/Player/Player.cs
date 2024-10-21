@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
             if (input.JumpInput())
             {
                 yVelocity = Mathf.Sqrt(-2f * jumpHeight * Physics.gravity.y);
+                AudioManager.Instance.PlaySFX("Jump");
             }
         }
         yVelocity += Physics.gravity.y * 2 * Time.deltaTime;

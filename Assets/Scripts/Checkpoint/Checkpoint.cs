@@ -19,6 +19,7 @@ public class Checkpoint : MonoBehaviour
     void SetCheckpoint()
     {
         // Set the player's respawn position
+        AudioManager.Instance.PlaySFX("Checkpoint");
         SpawnManager.instance.SetCheckpoint(transform.position);
     }
 

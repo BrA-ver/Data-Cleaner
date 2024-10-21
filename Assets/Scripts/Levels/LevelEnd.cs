@@ -12,6 +12,7 @@ public class LevelEnd : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.Instance.PlaySFX("Win");
         SwitchLevel();
     }
 

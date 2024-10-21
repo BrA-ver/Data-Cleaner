@@ -9,6 +9,11 @@ public class Bullet : MonoBehaviour
     float lifeTimeCounter = 0f;
     [SerializeField] GameObject exp;
 
+    private void Start()
+    {
+        AudioManager.Instance.PlaySFX("Shoot");
+    }
+
     void Update()
     {
         lifeTimeCounter += Time.deltaTime;
@@ -37,6 +42,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.Instance.PlaySFX("Impact");
         Instantiate(exp, transform.position, Quaternion.identity);
         ResetBullet();
     }
