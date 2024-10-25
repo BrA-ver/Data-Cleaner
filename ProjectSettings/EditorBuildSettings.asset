@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: d8cfab9e526e5b742b790f7cc37001f5
+  - enabled: 1
+    path: Assets/Scenes/dark_level.unity
+    guid: 6bb3189ec9f5c63418551a3ca289706e
+  - enabled: 1
+    path: Assets/Scenes/dark_level 2.unity
+    guid: a46d30e58c9f0504fa38ef7d76c90245
   m_configObjects: {}

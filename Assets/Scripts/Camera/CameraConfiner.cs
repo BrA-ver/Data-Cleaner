@@ -8,7 +8,9 @@ public class CameraConfiner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player Enter");
-        CameraManager.Instance.SetCameraConfiner(GetComponent<BoxCollider>());
+        if (other.CompareTag("Player"))
+        {
+            CameraManager.Instance.SetCameraConfiner(GetComponent<BoxCollider>());
+        }
     }
 }
