@@ -6,6 +6,7 @@ public class PlayerShooter : Shooter
 {
     public void Attack()
     {
+        AudioManager.Instance.PlaySFX("Shoot");
         ShootBullet("Player Bullet");
     }
 }

@@ -9,11 +9,6 @@ public class Bullet : MonoBehaviour
     float lifeTimeCounter = 0f;
     [SerializeField] GameObject exp;
 
-    private void Start()
-    {
-        AudioManager.Instance.PlaySFX("Shoot");
-    }
-
     void Update()
     {
         lifeTimeCounter += Time.deltaTime;

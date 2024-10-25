@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2423023143158397498}
   - component: {fileID: 6172587351763289249}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: Cam Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2391088414230964242}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0.2080551, y: 0.26910362, z: -0.05965883, w: 0.938476}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8738421549508876416}
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: 32, z: 0}
 --- !u!114 &6172587351763289249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   rotationSpeed: 10
   anim: {fileID: 2028679010370684108}
   ground: {fileID: 6331571001625715274}
-  jumpHeight: 5
+  jumpHeight: 3
 --- !u!114 &2223593977914467921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +263,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5.5
+  m_Radius: 8.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7587014094651101723
 MonoBehaviour:
@@ -304,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 7815516066621607203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -325,7 +325,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  detectRadius: 0.25
+  detectRadius: 0.23
 --- !u!1 &8035400655630895296
 GameObject:
   m_ObjectHideFlags: 0
